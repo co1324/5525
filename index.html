@@ -49,6 +49,7 @@
             .header h1 { font-size: 4.5rem; letter-spacing: -2px; }
         }
 
+        /* 서브헤더 가려짐 방지 수정 */
         .sub-header {
             display: flex;
             flex-direction: column;
@@ -57,10 +58,26 @@
             padding: 5px 0;
             font-size: 0.8rem;
             font-weight: bold;
+            text-align: center;
+            align-items: center;
+            padding-left: 60px; /* 모바일 배지 피하기 */
         }
 
         @media (min-width: 640px) {
-            .sub-header { flex-direction: row; justify-content: space-between; font-size: 0.9rem; }
+            .sub-header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                font-size: 0.9rem; 
+                text-align: left;
+                align-items: center;
+                padding-left: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .sub-header {
+                padding-left: 130px; /* 데스크톱 배지 너비만큼 여백 확보 */
+            }
         }
 
         /* 반응형 두리안 배지 */
