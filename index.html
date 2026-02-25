@@ -49,7 +49,6 @@
             .header h1 { font-size: 4.5rem; letter-spacing: -2px; }
         }
 
-        /* 서브헤더 가려짐 방지 수정 */
         .sub-header {
             display: flex;
             flex-direction: column;
@@ -60,7 +59,7 @@
             font-weight: bold;
             text-align: center;
             align-items: center;
-            padding-left: 60px; /* 모바일 배지 피하기 */
+            padding-left: 60px;
         }
 
         @media (min-width: 640px) {
@@ -76,11 +75,10 @@
 
         @media (min-width: 768px) {
             .sub-header {
-                padding-left: 130px; /* 데스크톱 배지 너비만큼 여백 확보 */
+                padding-left: 130px;
             }
         }
 
-        /* 반응형 두리안 배지 */
         .breaking-badge {
             position: absolute;
             top: 100px;
@@ -228,6 +226,40 @@
             height: auto;
             max-width: 260px;
         }
+
+        /* Recreated addto CI Styles */
+        .addto-logo-container {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .addto-text {
+            font-family: 'Arial Black', 'Helvetica Black', sans-serif;
+            font-weight: 900;
+            font-size: 3rem;
+            color: #1a202c;
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .value-wisdom {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #2d3748;
+            letter-spacing: 0.45em;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .addto-slogan {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -350,9 +382,11 @@
                 </p>
             </div>
 
-            <div class="mt-10 text-center bg-slate-800 text-white p-4 rounded-lg transform hover:scale-105 transition-transform">
-                <span class="text-lg sm:text-xl font-extrabold text-yellow-400">합 격 기 원</span><br>
-                <span class="text-[10px] sm:text-xs block mt-1">2026년 전기기능사 전원 합격!</span>
+            <!-- Recreated addto CI Section -->
+            <div class="addto-logo-container">
+                <div class="addto-text">addto</div>
+                <div class="value-wisdom">Value Wisdom</div>
+                <div class="addto-slogan">믿고보는 콘텐츠, 애드투</div>
             </div>
         </div>
     </div>
@@ -360,7 +394,7 @@
     <!-- 하단 광고 영역 -->
     <div class="mt-12 pt-6 border-t-4 border-double border-black flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="text-xl font-black text-gray-200 hidden sm:block">ELECTRICITY AD</div>
-        <div class="text-center font-bold text-gray-500 text-xs sm:text-sm">전기기능사 합격의 지름길, 전기 일보가 끝까지 함께합니다.</div>
+        <div class="text-center font-bold text-gray-500 text-xs sm:text-sm">전기기능사 합격의 지름길, (주)애드투가 끝까지 함께합니다.</div>
         <div class="text-xl font-black text-gray-200 hidden sm:block">ELECTRICITY AD</div>
     </div>
 </div>
