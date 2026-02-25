@@ -8,246 +8,169 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;700&display=swap');
         
-        :root {
-            --newspaper-bg: #fdfdfb;
-            --ink-color: #1a1a1a;
-            --accent-red: #c00;
-        }
-
         body {
             background-color: #e5e5e5;
             font-family: 'Noto Sans KR', sans-serif;
-            padding: 10px;
-            margin: 0;
-            display: flex;
-            justify-content: center;
+            padding: 20px;
         }
 
-        /* 아이폰 16 프로 등 모바일 대응을 위한 반응형 컨테이너 */
         .newspaper {
-            background-color: var(--newspaper-bg);
-            width: 100%;
+            background-color: #fdfdfb;
             max-width: 900px;
-            padding: 20px; /* 모바일에서는 패딩 축소 */
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
             border: 1px solid #d1d1d1;
-            color: var(--ink-color);
+            color: #1a1a1a;
             position: relative;
-            overflow-x: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .newspaper {
-                padding: 40px;
-                margin: 20px;
-            }
         }
 
         .header {
             text-align: center;
-            border-bottom: 3px double var(--ink-color);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
+            border-bottom: 4px double #1a1a1a;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .header h1 {
             font-family: 'Nanum+Myeongjo', serif;
             font-weight: 800;
-            font-size: 2.5rem; /* 모바일 기본 크기 */
-            letter-spacing: -1px;
+            font-size: 4.5rem;
+            letter-spacing: -2px;
             margin: 0;
-        }
-
-        @media (min-width: 768px) {
-            .header h1 { font-size: 4.5rem; }
         }
 
         .sub-header {
             display: flex;
-            flex-direction: column; /* 모바일에서는 세로로 */
-            gap: 5px;
-            border-bottom: 1px solid var(--ink-color);
-            padding: 8px 0;
-            font-size: 0.75rem;
+            justify-content: space-between;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 5px 0;
+            font-size: 0.9rem;
             font-weight: bold;
-            text-align: center;
         }
 
-        @media (min-width: 640px) {
-            .sub-header {
-                flex-direction: row;
-                justify-content: space-between;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* 두리안/스파이크 특종 배지 - 모바일 최적화 */
+        /* 큼직한 두리안/스파이크 특종 배지 */
         .breaking-badge {
             position: absolute;
-            top: 100px;
-            left: -10px;
-            width: 80px;
-            height: 80px;
-            background-color: var(--accent-red);
+            top: 140px;
+            left: 10px;
+            width: 140px;
+            height: 140px;
+            background-color: #c00;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             font-weight: 900;
-            font-size: 0.8rem;
+            font-size: 1.4rem;
             line-height: 1.1;
-            transform: rotate(-10deg);
+            transform: rotate(-15deg);
             z-index: 50;
+            /* 가시 돋친 두리안 스타일의 다각형 */
             clip-path: polygon(
                 50% 0%, 63% 18%, 85% 15%, 75% 37%, 100% 50%, 75% 63%, 85% 85%, 63% 82%, 50% 100%, 37% 82%, 15% 85%, 25% 63%, 0% 50%, 25% 37%, 15% 15%, 37% 18%
             );
-            border: 1px solid #ff0;
-        }
-
-        @media (min-width: 768px) {
-            .breaking-badge {
-                top: 140px;
-                left: 10px;
-                width: 130px;
-                height: 130px;
-                font-size: 1.3rem;
-            }
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+            border: 2px solid #ff0;
         }
 
         .headline {
             font-family: 'Nanum+Myeongjo', serif;
             font-weight: 800;
-            margin: 20px 0;
+            line-height: 1.2;
+            margin: 30px 0 20px 0;
             text-align: center;
             border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
+            padding-left: 100px; /* 배지 공간 확보 */
         }
 
-        .headline h2.main-title {
-            font-size: 1.5rem;
-            line-height: 1.3;
-            margin-bottom: 10px;
-        }
-
-        .headline h2.sub-title {
-            font-size: 1.1rem;
-        }
-
-        @media (min-width: 768px) {
-            .headline h2.main-title { font-size: 2.25rem; }
-            .headline h2.sub-title { font-size: 1.5rem; }
-        }
-
-        .main-grid {
+        .main-article {
             display: grid;
-            grid-template-columns: 1fr; /* 모바일은 1열 */
-            gap: 20px;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
         }
 
-        @media (min-width: 768px) {
-            .main-grid {
-                grid-template-columns: 2fr 1fr;
-                gap: 30px;
-            }
-        }
-
-        .article-body {
+        .article-text {
+            column-count: 2;
+            column-gap: 20px;
             text-align: justify;
             line-height: 1.7;
-            font-size: 0.9rem;
-        }
-
-        @media (min-width: 768px) {
-            .article-body {
-                column-count: 2;
-                column-gap: 20px;
-            }
+            font-size: 0.95rem;
         }
 
         .dropcap {
             float: left;
-            font-size: 3rem;
+            font-size: 3.5rem;
             line-height: 1;
+            padding-top: 4px;
             padding-right: 8px;
             font-family: 'Nanum+Myeongjo', serif;
             font-weight: 800;
-            color: var(--accent-red);
+            color: #c00;
         }
 
         .sidebar {
-            border-top: 1px solid #ddd;
-            padding-top: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .sidebar {
-                border-top: none;
-                border-left: 1px solid #ddd;
-                padding-top: 0;
-                padding-left: 20px;
-            }
+            border-left: 1px solid #ddd;
+            padding-left: 20px;
         }
 
         .news-img {
             width: 100%;
-            background: #f8f9fa;
-            border: 1px solid #eee;
+            background: #fdfdfd;
+            border: 1px solid #ddd;
             margin: 10px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px;
-        }
-
-        .news-img svg {
-            max-width: 100%;
-            height: auto;
+            position: relative;
+            padding: 15px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
         }
 
         .caption {
-            font-size: 0.75rem;
-            color: #666;
+            font-size: 0.8rem;
+            color: #555;
+            font-style: italic;
             margin-bottom: 15px;
             text-align: center;
         }
 
+        h2, h3 {
+            font-family: 'Nanum+Myeongjo', serif;
+            font-weight: 700;
+        }
+
         .k-law {
             background: #f1f5f9;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #e2e8f0;
-            margin-top: 20px;
+            margin-top: 25px;
             border-radius: 4px;
         }
 
         .formula {
             display: block;
             text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 15px 0;
             background: #fff;
-            padding: 12px;
-            border: 2px solid var(--ink-color);
+            padding: 15px;
+            border: 2px solid #1a1a1a;
             color: #b91c1c;
-            box-shadow: 3px 3px 0px var(--ink-color);
-        }
-
-        .issue-title {
-            font-size: 1rem;
-            font-weight: 800;
-            color: #1e3a8a;
-            line-height: 1.3;
+            box-shadow: 3px 3px 0px #1a1a1a;
         }
         
-        sup { font-size: 0.75em; }
+        sup { font-size: 0.7em; }
     </style>
 </head>
 <body>
 
 <div class="newspaper">
-    <!-- 단독 특종 배지 -->
+    <!-- 단독 특종 배지 (두리안 가시 모양) -->
     <div class="breaking-badge">
         단독<br>特種
     </div>
@@ -255,7 +178,7 @@
     <!-- 신문 제호 -->
     <div class="header">
         <h1>電 氣 日 報</h1>
-        <div class="text-[10px] tracking-widest uppercase opacity-60">The Electricity Daily News</div>
+        <div class="text-sm tracking-widest uppercase">The Electricity Daily News</div>
     </div>
 
     <!-- 신문 정보 -->
@@ -267,104 +190,123 @@
 
     <!-- 메인 헤드라인 -->
     <div class="headline">
-        <h2 class="main-title tracking-tighter text-gray-900">
-            충격 보도! 암페어의 주회법칙,<br class="hidden sm:block"> 환형 회로 자기장 비밀 전격 공개
+        <h2 class="text-4xl mb-2 leading-tight tracking-tighter text-gray-900">
+            충격 보도! 암페어의 주회법칙, 환형 회로 자기장 비밀 전격 공개
         </h2>
-        <h2 class="sub-title text-red-700 font-bold italic">
-            "공식 H = NI / L 하나로 모든 환형 자계가 풀린다"
+        <h2 class="text-2xl text-red-700 font-bold italic">
+            "공식 H = NI / L 로 환형 자계 완전 정복"
         </h2>
     </div>
 
-    <div class="main-grid">
-        <!-- 메인 기사 영역 -->
+    <div class="main-article">
+        <!-- 왼쪽: 메인 기사 영역 -->
         <div>
             <div class="news-img">
-                <svg width="260" height="180" viewBox="0 0 260 180">
+                <!-- 직관적인 환형 코일 그래픽 (겹침 수정) -->
+                <svg width="260" height="200" viewBox="0 0 260 200">
                     <defs>
                         <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626" />
                         </marker>
                     </defs>
-                    <circle cx="130" cy="100" r="60" fill="none" stroke="#e2e8f0" stroke-width="30"/>
-                    <circle cx="130" cy="100" r="60" fill="none" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,5"/>
+                    <!-- 토로이드 코어 -->
+                    <circle cx="130" cy="110" r="65" fill="none" stroke="#e2e8f0" stroke-width="35"/>
+                    <circle cx="130" cy="110" r="65" fill="none" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,5"/>
+                    
+                    <!-- 권선 (N) 시각화 -->
                     <g stroke="#92400e" stroke-width="4" fill="none" stroke-linecap="round">
-                        <path d="M130 40 C145 40 145 55 130 55 M155 45 C170 45 170 60 155 60"/>
-                        <path d="M130 160 C115 160 115 145 130 145 M105 155 C90 155 90 140 105 140"/>
+                        <path d="M130 45 C145 45 145 60 130 60 M155 50 C170 50 170 65 155 65 M175 65 C190 65 190 80 175 80"/>
+                        <path d="M130 175 C115 175 115 160 130 160 M105 170 C90 170 90 155 105 155 M85 160 C70 160 70 145 85 145"/>
                     </g>
-                    <path d="M130 100 m 0 -60 a 60 60 0 1 1 -1 0" fill="none" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
-                    <text x="130" y="25" fill="#dc2626" font-size="14" font-weight="900" text-anchor="middle">H (자기장)</text>
-                    <text x="130" y="105" fill="#475569" font-size="11" font-weight="bold" text-anchor="middle">L = 2πr</text>
-                    <line x1="130" y1="100" x2="130" y2="40" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2" />
+                    
+                    <!-- 자기장 세기 H -->
+                    <path d="M130 110 m 0 -65 a 65 65 0 1 1 -1 0" fill="none" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+                    <text x="130" y="30" fill="#dc2626" font-size="16" font-weight="900" text-anchor="middle">H (자기장)</text>
+                    <text x="130" y="115" fill="#475569" font-size="12" font-weight="bold" text-anchor="middle">L = 2πr</text>
+                    <line x1="130" y1="110" x2="130" y2="45" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2" />
+                    <text x="135" y="85" fill="#64748b" font-size="11">반지름 r</text>
                 </svg>
             </div>
-            <p class="caption">▲ 환형 회로(Toroid) 내부 자계 분포도</p>
+            <p class="caption">▲ 환형 회로(Toroid) 내부에서 강력하게 회전하는 자기장. 외부 누설은 거의 제로에 가깝다.</p>
             
-            <div class="article-body">
-                <span class="dropcap">암</span>페어의 주회적분 법칙이 전기학계에 던진 파장이 예사롭지 않다. 특히 환형 코일(Toroid) 내부를 흐르는 전류가 생성하는 자기장의 세기는 시험 문제의 단골 손님으로 꼽힌다. 
-                본지 취재팀이 입수한 핵심 공식에 따르면, 자기장의 세기 H는 권선수(N)와 전류(I)에 비례하며, 자로의 평균 길이(L)에 철저히 반비례한다. 
-                수식으로는 H = NI / L [AT/m]로 정의된다. 여기서 L은 원의 둘레인 2πr이다. 이 법칙의 핵심은 "전류를 많이 감고 세게 흘릴수록 힘이 세지지만, 통로가 길어지면 그만큼 힘이 약해진다"는 물리적 상관관계이다.
+            <div class="article-text">
+                <p class="mb-4">
+                    <span class="dropcap">암</span>페어의 주회적분 법칙이 전기학계에 던진 파장이 예사롭지 않다. 특히 환형 코일(Toroid) 내부를 흐르는 전류가 생성하는 자기장의 세기는 시험 문제의 단골 손님으로 꼽힌다. 
+                </p>
+                
+                <p class="mb-4">
+                    (주)애드투가 입수한 핵심 공식에 따르면, 자기장의 세기 H는 권선수(N)와 전류(I)에 비례하며, 자로의 평균 길이(L)에 철저히 반비례한다. 수식으로는 H = NI / L [AT/m]로 정의된다. 여기서 L은 원의 둘레인 2πr이다.
+                </p>
+
+                <p>
+                    이 법칙의 핵심은 "전류를 많이 감고(N) 세게 흘릴수록(I) 힘이 세지지만, 통로(L)가 길어지면 그만큼 힘이 약해진다"는 물리적 상관관계를 증명했다는 데 있다. 수험생들은 적분 기호에 겁먹을 필요 없이 이 분수식 하나만 기억하면 된다.
+                </p>
             </div>
 
             <!-- 키르히호프 기사 -->
             <div class="k-law">
-                <h3 class="text-base font-bold border-b-2 border-slate-800 mb-3 text-slate-800 flex items-center justify-between">
-                    <span>키르히호프의 양심 선언</span>
-                    <span class="text-[10px] font-normal opacity-60">"전압 합은 0으로 수렴"</span>
-                </h3>
-                <p class="text-xs leading-relaxed text-slate-700">
-                    전압 법칙(KVL)은 에너지 보존 법칙의 전기적 표현이다. 임의의 폐회로에서 기전력의 총합과 전압강하의 총합은 완벽하게 일치한다. 회로 한 바퀴 전압 합은 '0'이다.
+                <h3 class="text-[1.12rem] font-bold border-b-2 border-slate-800 mb-3 text-slate-800 whitespace-nowrap">키르히호프의 눈물 섞인 양심 선언: "세상에 공짜 전압은 없다"</h3>
+                <p class="text-sm leading-relaxed text-slate-700">
+                    수십 년간 침묵을 지켜온 키르히호프가 드디어 입을 열었다. "회로라는 폐쇄된 사회에서 에너지는 결코 사라지거나 창조되지 않는다"는 그의 고백은 큰 울림을 준다. 공급받은 기전력은 어떤 저항을 만나더라도 반드시 소비되며, 그 모든 합은 결국 '0'이라는 완벽한 균형을 이룬다는 것이다. 전압의 세계에 '공짜'란 존재하지 않는다는 물리적 정의가 다시금 확인되었다.
                 </p>
                 <div class="formula">ΣE - Σ(I·R) = 0</div>
+                <p class="text-xs text-center text-slate-500 font-bold italic mt-2">"투자한 전압은 반드시 어디선가 소비된다"</p>
             </div>
         </div>
 
-        <!-- 사이드바 영역 -->
+        <!-- 오른쪽: 사이드바 영역 -->
         <div class="sidebar">
-            <h3 class="text-base font-bold border-b-2 border-red-600 mb-4 bg-red-50 p-1 text-red-600">오늘의 이슈</h3>
+            <h3 class="text-lg font-bold border-b-2 border-red-600 mb-4 bg-red-50 p-1 text-red-600">오늘의 이슈</h3>
             
-            <div class="mb-6">
-                <h4 class="issue-title mb-2">"제베크와 펠티에, 서로의 반대였다?"</h4>
+            <div class="mb-8">
+                <h4 class="font-bold text-blue-900 leading-tight text-lg mb-2">"제베크와 펠티에, 서로의 반대였다?" <br>모방 의혹 넘어 '대칭 관계'로 결론</h4>
                 <div class="news-img">
-                    <svg width="180" height="90" viewBox="0 0 180 90">
-                        <rect x="20" y="45" width="140" height="12" fill="#f87171" stroke="#b91c1c"/>
-                        <rect x="20" y="57" width="140" height="12" fill="#60a5fa" stroke="#1d4ed8"/>
-                        <circle cx="20" cy="57" r="4" fill="#000"/>
-                        <circle cx="160" cy="57" r="4" fill="#000"/>
-                        <path d="M20 35 Q90 10 160 35" fill="none" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow-red)"/>
-                        <text x="90" y="30" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">열(ΔT) → 전기(V)</text>
+                    <!-- 제베크/펠티에 그래픽 (텍스트 겹침 수정) -->
+                    <svg width="180" height="110" viewBox="0 0 180 110">
+                        <!-- 금속 A -->
+                        <rect x="20" y="50" width="140" height="15" fill="#f87171" stroke="#b91c1c"/>
+                        <!-- 금속 B -->
+                        <rect x="20" y="65" width="140" height="15" fill="#60a5fa" stroke="#1d4ed8"/>
+                        <!-- 연결점 -->
+                        <circle cx="20" cy="65" r="5" fill="#000"/>
+                        <circle cx="160" cy="65" r="5" fill="#000"/>
+                        <!-- Seebeck 효과 표시 -->
+                        <path d="M20 40 Q90 5 160 40" fill="none" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow-red)"/>
+                        <text x="90" y="38" font-size="12" font-weight="bold" fill="#b91c1c" text-anchor="middle">열(ΔT) → 전기(V)</text>
                     </svg>
                 </div>
-                <p class="text-xs leading-relaxed text-gray-700">
-                    온도 차로 전기를 만드는 '제베크'와 전류로 온도 차를 만드는 '펠티에' 효과는 열전현상의 두 얼굴이다. 학계는 "완벽한 역과정"이라며 혼동하지 말 것을 당부했다.
+                <p class="text-xs leading-relaxed mt-2 text-gray-700">
+                    온도 차를 이용해 기전력을 발생시키는 '제베크(Seebeck)'와, 반대로 전류를 흘려 온도 차를 만드는 '펠티에(Peltier)' 효과는 열전현상의 두 얼굴이다. 학계는 "이 둘은 완벽한 역과정"이라며 수험생들에게 혼동하지 말 것을 당부했다.
                 </p>
             </div>
 
-            <div class="bg-yellow-50 p-3 border border-yellow-200 text-[11px] mb-6">
-                <strong class="text-xs block mb-1">📢 [급구] 자유전자 아르바이트</strong>
+            <div class="bg-yellow-50 p-4 border-2 border-yellow-200 text-xs mb-6">
+                <strong class="text-sm block mb-1">📢 [급구] 자유전자 아르바이트</strong>
                 전하량: 1.602 × 10<sup>-19</sup> [C] 소지 필수. <br>
-                복리후생: 쿨롱의 힘 보장.
+                도체 내 고속 이동 가능자 우대. <br>
+                복리후생: 전기장 내 가속 지원, 쿨롱의 힘 보장.
             </div>
 
-            <div class="border-t border-dashed border-gray-300 pt-3">
-                <h4 class="font-bold mb-1 text-slate-800 italic text-xs">🗞️ 오늘의 전기 운세</h4>
-                <p class="text-[10px] text-gray-600 leading-normal">
-                    - 전압운: 220V 안정권 유지.<br>
-                    - 저항운: 고집(R) 세면 실적(I) 떨어진다.
+            <div class="border-t-2 border-dashed border-gray-300 pt-4">
+                <h4 class="font-bold mb-2 text-slate-800 italic">🗞️ 오늘의 전기 운세</h4>
+                <p class="text-xs text-gray-600 leading-normal">
+                    - 전압운: 220V 안정권 유지. 마음껏 활동하라.<br>
+                    - 저항운: 고집(R)이 너무 세면 실적(I)이 급격히 떨어진다. 주변과 소통하며 유연하게 흐를 것.
                 </p>
             </div>
 
-            <div class="mt-8 text-center bg-slate-800 text-white p-3 rounded-lg">
-                <span class="text-lg font-extrabold text-yellow-400">합 격 기 원</span><br>
-                <span class="text-[10px]">2026 전기기능사 전원 합격!</span>
+            <div class="mt-10 text-center bg-slate-800 text-white p-4 rounded-lg transform hover:scale-105 transition-transform">
+                <span class="text-xl font-extrabold text-yellow-400">합 격 기 원</span><br>
+                <span class="text-xs block mt-1">2026년 전기기능사 전원 합격!</span>
             </div>
         </div>
     </div>
 
     <!-- 하단 광고 영역 -->
-    <div class="mt-8 pt-4 border-t-2 border-black flex flex-col gap-2 sm:flex-row justify-between items-center opacity-40">
-        <div class="text-xs font-black">ELECTRICITY AD</div>
-        <div class="text-[10px] text-center font-bold">전기기능사 합격의 지름길, 전기 일보</div>
-        <div class="text-xs font-black">ELECTRICITY AD</div>
+    <div class="mt-12 pt-6 border-t-4 border-double border-black flex justify-between items-center">
+        <div class="text-xl font-black text-gray-200">ELECTRICITY AD</div>
+        <div class="text-center font-bold text-gray-500">전기기능사 합격의 지름길, 전기 일보가 끝까지 함께합니다.</div>
+        <div class="text-xl font-black text-gray-200">ELECTRICITY AD</div>
     </div>
 </div>
 
